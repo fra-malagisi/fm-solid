@@ -1,5 +1,5 @@
 {
   "parser": "@typescript-eslint/parser",
-  "plugins": ["solid"],
+  "plugins": ["solid", "import", "unused-imports"],
   "extends": ["eslint:recommended", "plugin:solid/typescript"]
 }
