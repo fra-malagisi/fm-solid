@@ -1,13 +1,20 @@
 import type { Component } from 'solid-js';
-
-import styles from './App.module.css';
-import { Button } from './components/button';
+import { Home } from './pages/Home';
+import { Header } from './components/Header';
+import { Routes, Route } from 'solid-app-router';
+import { Match } from './pages/Match';
 
 const App: Component = () => {
   return (
-    <main class={styles.App}>
-      <Button label='Submit' />
-    </main>
+    <>
+      <Header title='Guess my number' />
+      <main>
+        <Routes>
+          <Route path='/' element={<Home />} />
+          <Route path='/match' element={<Match />} />
+        </Routes>
+      </main>
+    </>
   );
 };
 
