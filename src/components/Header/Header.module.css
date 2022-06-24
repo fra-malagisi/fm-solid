@@ -1,0 +1,27 @@
+.header {
+  @apply relative bg-blue-500 text-white;
+
+  &__content {
+    @apply flex items-center justify-between py-2 px-2 md:justify-start md:space-x-10;
+  }
+
+  &__logo {
+    @apply flex justify-start lg:w-0 lg:flex-1 font-bold;
+  }
+
+  &__mobile-button {
+    @apply inline-flex items-center justify-center rounded-md bg-blue-500 p-2  hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-inset focus:bg-blue-700;
+  }
+
+  &__desktop-button {
+    @apply whitespace-nowrap font-medium rounded-md bg-blue-500 p-2  hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-inset focus:bg-blue-700;
+  }
+
+  &__navigation {
+    @apply -my-2 -mr-2 md:hidden;
+  }
+
+  &__end-menu {
+    @apply hidden items-center justify-end md:flex md:flex-1 lg:w-0;
+  }
+}
