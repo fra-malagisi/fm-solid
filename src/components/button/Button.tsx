@@ -9,7 +9,7 @@ export type ButtonProps = {
 
 const Button: Component<ButtonProps> = ({ label, type, handleClick }) => {
   return (
-    <button type={type} class={styles.button}>
+    <button type={type} class={styles.button} onClick={() => handleClick && handleClick()}>
       {label}
     </button>
   );
