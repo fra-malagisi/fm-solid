@@ -3,13 +3,13 @@ import { Home } from './pages';
 import { Header } from './components/Header';
 import { Routes, Route } from 'solid-app-router';
 import { PlayerBoard } from './pages/match';
+import { MatchProvider } from './contexts/match.context';
 
 import styles from './App.module.css';
-import { style } from 'solid-js/web';
 
 const App: Component = () => {
   return (
-    <>
+    <MatchProvider>
       <Header title='Guess my number' />
       <main class={styles.App}>
         <Routes>
@@ -17,7 +17,7 @@ const App: Component = () => {
           <Route path='/match' element={<PlayerBoard />} />
         </Routes>
       </main>
-    </>
+    </MatchProvider>
   );
 };
 

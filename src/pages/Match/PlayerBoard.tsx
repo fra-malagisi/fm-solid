@@ -1,5 +1,5 @@
 import { Component, Switch, Match } from 'solid-js';
-import { createStore } from 'solid-js/store';
+import { useMatch } from '../../contexts/match.context';
 import SelectNumberOfPlayers from './SelectNumberOfPlayers';
 
 export type MatchInfo = {
@@ -7,19 +7,15 @@ export type MatchInfo = {
 };
 
 const PlayerBoard: Component = () => {
-  const [matchInfo, setMatchInfo] = createStore<MatchInfo>({ numberOfplayers: 0 });
-
-  const handleNumberOfPlayersChoice = (numberOfPlayers: number) => {
-    setMatchInfo('numberOfplayers', numberOfPlayers);
-  };
+  const { matchInfo, setNumberOfPlayers } = useMatch();
 
   return (
     <Switch fallback={<p>Loading..</p>}>
-      <Match when={matchInfo.numberOfplayers === 0}>
-        <SelectNumberOfPlayers handleChoice={handleNumberOfPlayersChoice} />
-        {matchInfo.numberOfplayers}
+      <Match when={matchInfo.numberOfPlayers === 0}>
+        <SelectNumberOfPlayers handleChoice={setNumberOfPlayers} />
+        {matchInfo.numberOfPlayers}
       </Match>
-      <Match when={matchInfo.numberOfplayers !== 0}>{matchInfo.numberOfplayers}</Match>
+      <Match when={matchInfo.numberOfPlayers !== 0}>{matchInfo.numberOfPlayers}</Match>
     </Switch>
   );
 };
