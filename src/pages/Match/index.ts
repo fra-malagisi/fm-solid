@@ -1,1 +1,1 @@
-export { default as Match } from './Match';
+export { default as PlayerBoard } from './PlayerBoard';
