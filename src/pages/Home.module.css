@@ -1,0 +1,3 @@
+.Home {
+  @apply text-center h-screen flex flex-col items-center justify-center;
+}
