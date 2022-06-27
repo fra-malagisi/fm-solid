@@ -1,0 +1,11 @@
+.select-number-of-players {
+  @apply text-center h-full flex flex-col items-center justify-center;
+
+  &__title {
+    @apply text-3xl pb-4;
+  }
+
+  &__buttons {
+    @apply flex justify-between w-3/12;
+  }
+}

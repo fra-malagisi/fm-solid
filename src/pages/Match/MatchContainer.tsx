@@ -1,7 +1,7 @@
 import { Component, Switch, Match } from 'solid-js';
 import { useMatch } from '../../contexts/match.context';
 import { PlayerBoard } from './player-board';
-import SelectNumberOfPlayers from './select-number-of-players/SelectNumberOfPlayers';
+import { SelectNumberOfPlayers } from './select-number-of-players';
 
 export type MatchInfo = {
   numberOfplayers: number;
