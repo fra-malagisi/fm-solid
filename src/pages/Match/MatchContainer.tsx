@@ -1,23 +1,25 @@
 import { Component, Switch, Match } from 'solid-js';
 import { useMatch } from '../../contexts/match.context';
-import SelectNumberOfPlayers from './SelectNumberOfPlayers';
+import { PlayerBoard } from './player-board';
+import SelectNumberOfPlayers from './select-number-of-players/SelectNumberOfPlayers';
 
 export type MatchInfo = {
   numberOfplayers: number;
 };
 
-const PlayerBoard: Component = () => {
+const MatchContainer: Component = () => {
   const { matchInfo, setNumberOfPlayers } = useMatch();
 
   return (
     <Switch fallback={<p>Loading..</p>}>
       <Match when={matchInfo.numberOfPlayers === 0}>
         <SelectNumberOfPlayers handleChoice={setNumberOfPlayers} />
-        {matchInfo.numberOfPlayers}
       </Match>
-      <Match when={matchInfo.numberOfPlayers !== 0}>{matchInfo.numberOfPlayers}</Match>
+      <Match when={matchInfo.numberOfPlayers !== 0}>
+        <PlayerBoard numberOfPlayers={matchInfo.numberOfPlayers} />
+      </Match>
     </Switch>
   );
 };
 
-export default PlayerBoard;
+export default MatchContainer;

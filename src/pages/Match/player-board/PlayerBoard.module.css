@@ -1,0 +1,5 @@
+.player-board {
+  @apply h-full grid grid-cols-2;
+  &__player-section {
+  }
+}
