@@ -1,0 +1,3 @@
+.player-section {
+  @apply flex justify-center p-4;
+}
