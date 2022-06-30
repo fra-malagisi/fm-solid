@@ -1,5 +1,6 @@
 .player-board {
-  @apply h-full grid grid-cols-2;
-  &__player-section {
+  @apply h-full grid grid-cols-2 relative;
+  &__random-number {
+    @apply h-48 border bg-white w-48 absolute left-[calc(50%_-_6rem)] top-[calc(50%_-_6rem)];
   }
 }
