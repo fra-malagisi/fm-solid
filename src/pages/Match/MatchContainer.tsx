@@ -3,10 +3,6 @@ import { useMatch } from '../../contexts/match.context';
 import { PlayerBoard } from './player-board';
 import { SelectNumberOfPlayers } from './select-number-of-players';
 
-export type MatchInfo = {
-  numberOfplayers: number;
-};
-
 const MatchContainer: Component = () => {
   const { matchInfo, setNumberOfPlayers } = useMatch();
 
@@ -16,7 +12,7 @@ const MatchContainer: Component = () => {
         <SelectNumberOfPlayers handleChoice={setNumberOfPlayers} />
       </Match>
       <Match when={matchInfo.numberOfPlayers !== 0}>
-        <PlayerBoard numberOfPlayers={matchInfo.numberOfPlayers} />
+        <PlayerBoard numberOfPlayers={matchInfo.numberOfPlayers} chances={matchInfo.chances} />
       </Match>
     </Switch>
   );
