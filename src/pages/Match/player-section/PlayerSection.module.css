@@ -1,3 +1,6 @@
 .player-section {
-  @apply flex justify-center p-4;
+  @apply flex flex-col items-center font-bold text-xl p-4;
+  &__chances {
+    @apply flex justify-center p-4;
+  }
 }
