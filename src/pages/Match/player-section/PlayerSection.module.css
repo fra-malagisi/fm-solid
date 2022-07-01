@@ -1,5 +1,8 @@
 .player-section {
   @apply flex flex-col items-center font-bold text-xl p-4;
+  &--active {
+    @apply bg-slate-300;
+  }
   &__chances {
     @apply flex justify-center p-4;
   }
