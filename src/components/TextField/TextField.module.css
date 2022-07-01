@@ -1,0 +1,9 @@
+.text-field {
+  @apply relative flex flex-col items-center;
+  &__input {
+    @apply border-black border h-24 w-24 text-5xl text-center rounded;
+  }
+  &__label {
+    @apply pb-2;
+  }
+}
