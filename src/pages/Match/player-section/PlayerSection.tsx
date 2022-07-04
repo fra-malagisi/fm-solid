@@ -12,6 +12,7 @@ export type PlayerSectionProps = {
 
 const PlayerSection: Component<PlayerSectionProps> = ({ player, chances }) => {
   const { matchInfo } = useMatch();
+
   return (
     <div
       classList={{
@@ -25,7 +26,11 @@ const PlayerSection: Component<PlayerSectionProps> = ({ player, chances }) => {
           <ChanceMarker />
         ))}
       </div>
-      <TextField id='prova' name='prova' value='' label='Digit a number' />
+      {matchInfo.isMatchStarted && matchInfo.activePlayer === player ? (
+        <TextField id='prova' name='prova' value='' label='Digit a number' disabled={false} />
+      ) : (
+        <TextField id='prova' name='prova' value='' label='Digit a number' disabled={true} />
+      )}
     </div>
   );
 };
