@@ -3,4 +3,7 @@
   &__random-number {
     @apply h-48 border bg-white w-48 absolute left-[calc(50%_-_6rem)] top-[calc(50%_-_6rem)];
   }
+  &__question-image {
+    @apply object-cover h-full;
+  }
 }

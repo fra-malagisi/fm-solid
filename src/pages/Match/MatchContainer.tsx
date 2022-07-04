@@ -12,7 +12,11 @@ const MatchContainer: Component = () => {
         <SelectNumberOfPlayers handleChoice={setNumberOfPlayers} />
       </Match>
       <Match when={matchInfo.numberOfPlayers !== 0}>
-        <PlayerBoard numberOfPlayers={matchInfo.numberOfPlayers} chances={matchInfo.chances} />
+        <PlayerBoard
+          numberOfPlayers={matchInfo.numberOfPlayers}
+          chances={matchInfo.chances}
+          randomNumber={matchInfo.randomNumber}
+        />
       </Match>
     </Switch>
   );
