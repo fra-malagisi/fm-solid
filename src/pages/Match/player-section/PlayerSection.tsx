@@ -1,4 +1,4 @@
-import { Component } from 'solid-js';
+import { Component, createEffect, createSignal, For, Show } from 'solid-js';
 import { TextField } from '../../../components/TextField';
 import { useMatch } from '../../../contexts/match.context';
 import { ChanceMarker } from '../chance-marker';
@@ -12,6 +12,17 @@ export type PlayerSectionProps = {
 
 const PlayerSection: Component<PlayerSectionProps> = ({ player, chances }) => {
   const { matchInfo } = useMatch();
+  let textField: any;
+
+  const [chancesSignal, _] = createSignal<number[]>([...Array(chances).keys()]);
+  const [isActivePlayer, setIsActivePlayer] = createSignal<boolean>(false);
+
+  createEffect(() => {
+    getFocus();
+    setIsActivePlayer(matchInfo.isMatchStarted && matchInfo.activePlayer === player);
+  });
+
+  const getFocus = () => isActivePlayer() && (textField as HTMLInputElement).focus();
 
   return (
     <div
@@ -22,15 +33,22 @@ const PlayerSection: Component<PlayerSectionProps> = ({ player, chances }) => {
     >
       <h2>Player {player}</h2>
       <div class={styles['player-section__chances']}>
-        {Array.from(Array(chances).keys()).map(chance => (
-          <ChanceMarker />
-        ))}
+        <For each={chancesSignal()}>{chance => <ChanceMarker />}</For>
       </div>
-      {matchInfo.isMatchStarted && matchInfo.activePlayer === player ? (
-        <TextField id='prova' name='prova' value='' label='Digit a number' disabled={false} />
-      ) : (
-        <TextField id='prova' name='prova' value='' label='Digit a number' disabled={true} />
-      )}
+      <Show
+        when={isActivePlayer()}
+        fallback={<TextField id='prova' name='prova' value='' label='Digit a number' disabled={true} />}
+      >
+        <TextField
+          ref={textField}
+          id='prova'
+          name='prova'
+          value=''
+          label='Digit a number'
+          disabled={false}
+          handleFocusOut={getFocus}
+        />
+      </Show>
     </div>
   );
 };

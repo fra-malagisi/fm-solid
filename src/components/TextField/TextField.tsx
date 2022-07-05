@@ -9,6 +9,7 @@ export type TextFieldProps = {
   type?: string;
   value?: string;
   onChange?: (e: Event) => void;
+  handleFocusOut?: () => void;
   disabled?: boolean;
   required?: boolean;
   name: string;
@@ -19,6 +20,7 @@ const TextField: Component<TextFieldProps> = ({
   name,
   placeholder,
   onChange,
+  handleFocusOut,
   type = 'text',
   disabled,
   required,
@@ -52,6 +54,7 @@ const TextField: Component<TextFieldProps> = ({
         required={required}
         onkeyup={handleChange}
         maxLength='2'
+        onfocusout={() => handleFocusOut && handleFocusOut()}
       ></input>
     </div>
   );
