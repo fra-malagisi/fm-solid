@@ -11,7 +11,7 @@ export type PlayerSectionProps = {
 };
 
 const PlayerSection: Component<PlayerSectionProps> = ({ player, chances }) => {
-  const { matchInfo, isActivePlayer } = useMatch();
+  const { matchInfo, isActivePlayer, nextPlayer } = useMatch();
   let textField: any;
 
   const [chancesSignal, _] = createSignal<number[]>([...Array(chances).keys()]);
@@ -21,6 +21,12 @@ const PlayerSection: Component<PlayerSectionProps> = ({ player, chances }) => {
   });
 
   const getFocus = () => isActivePlayer(player) && (textField as HTMLInputElement).focus();
+
+  const handleChange = (event: KeyboardEvent) => {
+    if (event.code === 'Enter') {
+      nextPlayer();
+    }
+  };
 
   return (
     <div
@@ -44,6 +50,7 @@ const PlayerSection: Component<PlayerSectionProps> = ({ player, chances }) => {
           value=''
           label='Guess the number'
           disabled={false}
+          onChange={handleChange}
           handleFocusOut={getFocus}
         />
       </Show>

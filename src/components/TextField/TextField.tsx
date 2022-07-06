@@ -8,7 +8,7 @@ export type TextFieldProps = {
   placeholder?: string;
   type?: string;
   value?: string;
-  onChange?: (e: Event) => void;
+  onChange?: (e: KeyboardEvent) => void;
   handleFocusOut?: () => void;
   disabled?: boolean;
   required?: boolean;
@@ -31,7 +31,7 @@ const TextField: Component<TextFieldProps> = ({
 
   const [inputValue, setInputValue] = createSignal<string | undefined>(value);
 
-  const handleChange = (event: Event) => {
+  const handleChange = (event: KeyboardEvent) => {
     setInputValue((event.target as HTMLInputElement).value.replace(/[^0-9]/g, '0'));
     onChange && onChange(event);
   };

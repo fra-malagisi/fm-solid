@@ -13,12 +13,14 @@ export type MatchStore = {
   matchInfo: MatchInfo;
   setNumberOfPlayers: (numberOfPlayers: number) => void;
   isActivePlayer: (player: number) => boolean;
+  nextPlayer: () => void;
 };
 
 const MatchContext = createContext<MatchStore>({
   matchInfo: { isMatchStarted: false, numberOfPlayers: 0, chances: 3, activePlayer: 0, randomNumber: 0 },
   setNumberOfPlayers: (numberOfPlayers: number) => {},
   isActivePlayer: (player: number) => false,
+  nextPlayer: () => {},
 });
 
 export const MatchProvider: FlowComponent = (props: any) => {
@@ -40,6 +42,14 @@ export const MatchProvider: FlowComponent = (props: any) => {
         randomStart();
       },
       isActivePlayer: (player: number) => matchInfo.isMatchStarted && matchInfo.activePlayer === player,
+      nextPlayer: () =>
+        setMatchInfo(
+          produce(
+            (matchInfo: MatchInfo) =>
+              (matchInfo.activePlayer =
+                matchInfo.activePlayer === matchInfo.numberOfPlayers ? 1 : matchInfo.activePlayer + 1)
+          )
+        ),
     };
 
   const getRandomNumber = () => {
