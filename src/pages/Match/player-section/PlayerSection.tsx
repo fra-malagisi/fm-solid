@@ -11,18 +11,16 @@ export type PlayerSectionProps = {
 };
 
 const PlayerSection: Component<PlayerSectionProps> = ({ player, chances }) => {
-  const { matchInfo } = useMatch();
+  const { matchInfo, isActivePlayer } = useMatch();
   let textField: any;
 
   const [chancesSignal, _] = createSignal<number[]>([...Array(chances).keys()]);
-  const [isActivePlayer, setIsActivePlayer] = createSignal<boolean>(false);
 
   createEffect(() => {
     getFocus();
-    setIsActivePlayer(matchInfo.isMatchStarted && matchInfo.activePlayer === player);
   });
 
-  const getFocus = () => isActivePlayer() && (textField as HTMLInputElement).focus();
+  const getFocus = () => isActivePlayer(player) && (textField as HTMLInputElement).focus();
 
   return (
     <div
@@ -36,7 +34,7 @@ const PlayerSection: Component<PlayerSectionProps> = ({ player, chances }) => {
         <For each={chancesSignal()}>{chance => <ChanceMarker />}</For>
       </div>
       <Show
-        when={isActivePlayer()}
+        when={isActivePlayer(player)}
         fallback={<TextField id='prova' name='prova' value='' label='Digit a number' disabled={true} />}
       >
         <TextField
