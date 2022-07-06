@@ -39,10 +39,10 @@ const PlayerSection: Component<PlayerSectionProps> = ({ player, chances }) => {
       >
         <TextField
           ref={textField}
-          id='prova'
-          name='prova'
+          id={`player-${player}-input`}
+          name={`player-${player}-input`}
           value=''
-          label='Digit a number'
+          label='Guess the number'
           disabled={false}
           handleFocusOut={getFocus}
         />
